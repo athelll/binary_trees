@@ -13,6 +13,22 @@ int get_depth(const binary_tree_t *node)
 }
 
 /**
+ * me_or_father - checks if ancestor is me or my father
+ * @first: first
+ * @second: second
+ * Return: return ancestor or NULL
+ */
+binary_tree_t *me_or_father(const binary_tree_t *first, const binary_tree_t *second)
+{
+	if (first == second)
+		return ((binary_tree_t *) first);
+
+	if (first->parent == second->parent)
+		return (first->parent);
+
+	return (NULL);
+}
+/**
  * binary_trees_ancestor - finds the ancestor of two nodes in a binary tree
  * @first: first node
  * @second: second node
@@ -38,8 +54,8 @@ binary_tree_t *binary_trees_ancestor(const binary_tree_t *first, const binary_tr
 	if (!first || !second)
 		return (NULL);
 
-	if (first->parent == second->parent)
-		return (first->parent);
+	if (me_or_father(first, second) != NULL)
+		return (me_or_father(first, second));
 
 	first_depth = get_depth(first);
 	second_depth = get_depth(second);
@@ -52,11 +68,8 @@ binary_tree_t *binary_trees_ancestor(const binary_tree_t *first, const binary_tr
 		for (; first_depth != second_depth; first_depth--)
 			first = first->parent;
 
-	if (first == second)
-		return ((binary_tree_t *) first);
-
-	if (first->parent == second->parent)
-		return (first->parent);
+	if (me_or_father(first, second) != NULL)
+		return (me_or_father(first, second));
 
 	while (first->parent != second->parent)
 	{
