@@ -30,8 +30,7 @@ int get_depth(const binary_tree_t *node)
  *    both nodes backtracks to their parents until they find a parent they both
  *    share and returns said parent. if not returns NULL.
  */
-binary_tree_t *binary_trees_ancestor(const binary_tree_t *first,
-																		 const binary_tree_t *second)
+binary_tree_t *binary_trees_ancestor(const binary_tree_t *first, const binary_tree_t *second)
 {
 	int first_depth;
 	int second_depth;
@@ -39,7 +38,7 @@ binary_tree_t *binary_trees_ancestor(const binary_tree_t *first,
 	if (!first || !second)
 		return (NULL);
 
-	if (first->parent == second->parent || first == second)
+	if (first->parent == second->parent)
 		return (first->parent);
 
 	first_depth = get_depth(first);
