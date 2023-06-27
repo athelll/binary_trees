@@ -14,6 +14,9 @@ binary_tree_t **create_queue(int *start, int *end)
 	binary_tree_t **queue;
 
 	queue = (binary_tree_t **) malloc(sizeof(binary_tree_t) * MAX_SIZE);
+	if (!queue)
+		return (NULL);
+
 	*start = *end = 0;
 	return (queue);
 }
@@ -65,8 +68,14 @@ void binary_tree_levelorder(const binary_tree_t *tree, void (*func)(int))
 	binary_tree_t **queue;
 	binary_tree_t *node;
 
+	if (!tree || !func)
+		return;
+
 	node = (binary_tree_t *) tree;
 	queue = create_queue(&begin, &end);
+
+	if (!queue)
+		return;
 
 	while (node)
 	{
@@ -79,6 +88,5 @@ void binary_tree_levelorder(const binary_tree_t *tree, void (*func)(int))
 
 		node = deque(queue, &begin);
 	}
-
 	free(queue);
 }
