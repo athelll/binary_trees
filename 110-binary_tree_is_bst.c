@@ -63,7 +63,7 @@ int get_min(const binary_tree_t *node)
 }
 
 /**
- * binary_tree_is_bst - checks if a binary tree is a valid Binary Search Tree
+ * get_if_bst - helper f(x), checks if a BT is a valid Binary Search Tree
  * @tree: root node to examine from
  * Return: 1 if a BST 0 if not.
  *
@@ -71,7 +71,7 @@ int get_min(const binary_tree_t *node)
  * Recursively checks if, for all nodes, the key of a node is less than
  * all keys in its right branch but greater than all keys in its left branch.
  */
-int binary_tree_is_bst(const binary_tree_t *tree)
+int get_if_bst(const binary_tree_t *tree)
 {
 	if (!tree)
 		return (1);
@@ -83,8 +83,22 @@ int binary_tree_is_bst(const binary_tree_t *tree)
 		return (0);
 
 	/** if either left or right at any point returns 0 meaning not BST **/
-	if (!binary_tree_is_bst(tree->left) || !binary_tree_is_bst(tree->right))
+	if (!get_if_bst(tree->left) || !get_if_bst(tree->right))
 		return (0);
 
 	return (1);
 }
+
+/**
+ * binary_tree_is_bst - checks if a binary tree is a Binary Search Tree usinf
+ * helper f(x) get_if_bst.
+ * @tree: pointer to Binary Tree to Validate.
+ * Return: 1 if BST 0 if not.
+ */
+int binary_tree_is_bst(const binary_tree_t *tree)
+{
+	if (!tree)
+		return (0);
+	return (get_if_bst(tree));
+}
+
