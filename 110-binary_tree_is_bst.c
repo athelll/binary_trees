@@ -94,6 +94,7 @@ int get_if_bst(const binary_tree_t *tree)
  * helper f(x) get_if_bst.
  * @tree: pointer to Binary Tree to Validate.
  * Return: 1 if BST 0 if not.
+ * Bug: Not accurate when duplicate keys exist.
  */
 int binary_tree_is_bst(const binary_tree_t *tree)
 {
