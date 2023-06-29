@@ -8,6 +8,7 @@
 bst_t *create_new_bst(int value)
 {
 	bst_t *new = malloc(sizeof(bst_t));
+
 	if (!new)
 		return (NULL);
 
