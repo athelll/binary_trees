@@ -33,12 +33,12 @@ bst_t *bst_insert(bst_t **tree, int value)
 
 	if (!tree || !value)
 		return (NULL);
-
+	if (*tree && value == (*tree)->n)
+		return (NULL);
 	node = *tree;
 	new = create_new_bst(value);
 	if (!new)
 		return (NULL);
-
 	if (!(*tree))
 	{
 		*tree = new;
